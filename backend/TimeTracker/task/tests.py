@@ -54,8 +54,6 @@ class TaskTestCase(APITestCase):
         client = APIClient()
         client.force_authenticate(user=self.user1, token=self.token1)
         task = {
-            'user_id': self.user1.id,
-            'start_time': datetime.now().strftime('%d/%m/%Y, %H:%M:%S'),
             'hours': 18,
             'description': 'Test',
             'project': 'P2'
