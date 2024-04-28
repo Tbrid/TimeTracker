@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import { Box, Button, Stack, Typography, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
@@ -28,6 +29,7 @@ export default function Login() {
     if (typeof window !== "undefined" && window.localStorage) {
       localStorage.setItem("access", access);
       localStorage.setItem("refresh", refresh);
+      localStorage.setItem("user", jwtDecode(access).user_id);
     }
   };
 
@@ -103,7 +105,6 @@ export default function Login() {
                   color="primary"
                   size="large"
                   variant="contained"
-                  disabled={!isValid || !touched}
                 >
                   Log In
                 </Button>

@@ -139,7 +139,6 @@ export default function Register() {
                   color="primary"
                   size="large"
                   variant="contained"
-                  disabled={!isValid || !touched}
                 >
                   Reigster
                 </Button>
