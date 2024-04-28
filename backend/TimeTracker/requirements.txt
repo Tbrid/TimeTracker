@@ -1,0 +1,6 @@
+Django==4.2.11
+python-decouple==3.8
+mysqlclient==2.1.1
+djangorestframework==3.14.0
+djangorestframework_simplejwt==5.3.1
+drf_nested_routers==0.93.4
