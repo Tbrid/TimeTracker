@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'authentication.apps.AuthenticationConfig',
+    'task.apps.TaskConfig',
 ]
 
 MIDDLEWARE = [
