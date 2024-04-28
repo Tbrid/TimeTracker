@@ -18,10 +18,13 @@ class TaskView(CustomPermissionViewSet):
     
     def list(self, request, user_pk):
         start_time = self.request.query_params.get('start_time', None)
+        end_time = self.request.query_params.get('end_time', None)
 
         queryset = Task.objects.filter(user_id=user_pk)
         if start_time:
             queryset = queryset.filter(start_time__gte=start_time)
+        if end_time:
+            queryset = queryset.filter(start_time__lte=end_time)
         total_hours_for_projects = queryset.values('project').order_by('project').annotate(total_hours=Sum('hours'))
         task_serializer = TaskSerializer(queryset, many=True)
         return Response(status=status.HTTP_200_OK, data={
