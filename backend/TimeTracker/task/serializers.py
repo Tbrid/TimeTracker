@@ -31,7 +31,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
         created_task = Task.objects.create(
             user=user,
-            start_time=datetime.now(),
+            start_time=datetime.now(),  # auto save current time
             hours=hours,
             description=description,
             project=project

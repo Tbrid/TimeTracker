@@ -25,7 +25,10 @@ class TaskView(CustomPermissionViewSet):
             queryset = queryset.filter(start_time__gte=start_time)
         if end_time:
             queryset = queryset.filter(start_time__lte=end_time)
+        
+        # Get total hours in separate field in response
         total_hours_for_projects = queryset.values('project').order_by('project').annotate(total_hours=Sum('hours'))
+
         task_serializer = TaskSerializer(queryset, many=True)
         return Response(status=status.HTTP_200_OK, data={
             'tasks': task_serializer.data, 

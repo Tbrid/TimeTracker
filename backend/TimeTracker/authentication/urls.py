@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
 router = routers.DefaultRouter()
 
 
-router.register(r'users', views.UsersView, basename='users')
+router.register(r'users', views.UsersView, basename='users') # get list of users
 
 urlpatterns = [
     path('', include(router.urls)),

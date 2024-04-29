@@ -3,3 +3,6 @@
 
 # Django
 __pycache__
+
+#docker
+mysql
