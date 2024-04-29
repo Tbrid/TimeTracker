@@ -43,6 +43,7 @@ export default function Tasks() {
 
   const [tasks, setTasks] = useState(null);
   const [date, setDate] = useState(null);
+  const [users, setUsers] = useState(null);
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
 
   useEffect(() => {
@@ -84,6 +85,28 @@ export default function Tasks() {
         });
     }
   }, [date]);
+
+  useEffect(() => {
+    let access = "";
+    if (typeof window !== "undefined" && window.localStorage) {
+      access = localStorage.getItem("access");
+    }
+    axios({
+      method: "get",
+      url: `${API_URL}/users/`,
+      headers: {
+        Authorization: `Bearer ${access}`,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          setUsers(response.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const onDateChange = (value) => {
     const d = new Date(value.$d);
@@ -168,6 +191,7 @@ export default function Tasks() {
       </Stack>
       <AddTask
         open={addTaskModalOpen}
+        users={users}
         handleClose={() => {
           setAddTaskModalOpen(false);
         }}

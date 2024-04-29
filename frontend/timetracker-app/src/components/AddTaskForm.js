@@ -122,11 +122,20 @@ export default function AddTask(props) {
                         sx={inputTextStyle}
                         fullWidth
                         name={"user_id"}
-                        label="user id"
+                        label="user"
+                        select
                         onChange={handleChange}
                         value={values.user_id}
                         onBlur={handleBlur}
-                      />
+                      >
+                        {props.users.map((user, index) => {
+                          return (
+                            <MenuItem key={`user-${index}`} value={user.id}>
+                              {user.email}
+                            </MenuItem>
+                          );
+                        })}
+                      </TextField>
                       <TextField
                         sx={inputTextStyle}
                         fullWidth
